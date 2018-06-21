@@ -1,11 +1,19 @@
 version: '2'
 services:
-  php-sqlsrv:
-    build:
-      context: "."
-      dockerfile: Dockerfile
+  php-apache:
+    build: 
+      context: .
+      dockerfile: /php/Dockerfile
     volumes:
     - "./www:/var/www/html"
     ports:
     - 80:80
     - 443:443
+  mssql:
+    build: 
+      context: .
+      dockerfile: /mssql/Dockerfile
+    volumes:
+    - "./data"
+    ports:
+    - 1433:1433
