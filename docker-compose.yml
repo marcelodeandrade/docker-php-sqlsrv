@@ -1,0 +1,11 @@
+version: '2'
+services:
+  php-sqlsrv:
+    build:
+      context: "."
+      dockerfile: Dockerfile
+    volumes:
+    - "/var/www/html:/var/www/html"
+    ports:
+    - 80:80
+    - 443:443
