@@ -39,6 +39,11 @@ docker-compose -f docker-compose.yml up
 docker-compose -f docker-compose.yml up --build
 ```
 
+### To run up compose daemonized
+```
+sudo docker-compose up -d
+```
+
 ### Run an image in a new container daemonized
 ```
 docker run -d -p 80:80 <container>
