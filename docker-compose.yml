@@ -1,6 +1,7 @@
 version: '2'
 services:
   php-apache:
+    container_name: webserver
     build: 
       context: .
       dockerfile: /php/Dockerfile
@@ -10,6 +11,7 @@ services:
     - 80:80
     - 443:443
   mssql:
+    container_name: database
     build: 
       context: .
       dockerfile: /mssql/Dockerfile
