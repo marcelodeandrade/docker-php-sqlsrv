@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: /php/Dockerfile
     volumes:
-    - "./www:/var/www/html"
+    - "~/phpsqlsrv/www:/var/www/html"
     ports:
     - 80:80
     - 443:443
@@ -16,6 +16,6 @@ services:
       context: .
       dockerfile: /mssql/Dockerfile
     volumes:
-    - "./backup:/var/opt/mssql/backup"
+    - "~/phpsqlsrv/backup:/var/opt/mssql/backup"
     ports:
     - 1433:1433
