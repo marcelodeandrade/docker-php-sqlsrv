@@ -1,5 +1,0 @@
-#!/bin/bash
-
-mkdir -p www &&
-chmod -R 777 www/ &&
-docker-compose -f docker-compose.yml up
