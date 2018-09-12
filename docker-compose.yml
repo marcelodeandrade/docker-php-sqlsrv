@@ -1,6 +1,6 @@
 version: '2'
 services:
-  php-apache:
+  webserver:
     container_name: webserver
     build: 
       context: .
@@ -10,7 +10,7 @@ services:
     ports:
     - 80:80
     - 443:443
-  mssql:
+  database:
     container_name: database
     build: 
       context: .
