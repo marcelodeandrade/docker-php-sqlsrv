@@ -53,7 +53,7 @@ RUN apt-get --no-install-recommends --no-install-suggests --yes --quiet install 
 RUN pecl install xdebug
 RUN echo "zend_extension=xdebug.so" > /etc/php/7.2/cli/conf.d/20-xdebug.ini
 RUN echo "zend_extension=xdebug.so" > /etc/php/7.2/apache2/conf.d/20-xdebug.ini
-COPY ./php/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+COPY ./docker-php-sqlsrv/php/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
 # INSTALL ODBC DRIVER & TOOLS
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
@@ -81,6 +81,11 @@ RUN echo ";priority=30\nextension=pdo_sqlsrv.so" > /etc/php/7.2/apache2/conf.d/3
 RUN curl -sS https://getcomposer.org/installer | \
     php -- --install-dir=/usr/local/bin/ --filename=composer
 RUN chmod +x /usr/local/bin/composer
+
+RUN composer global require --optimize-autoloader \
+    "hirak/prestissimo"
+
+RUN composer install --prefer-dist
 
 # INSTALL EDITORS
 RUN apt-get update && apt-get install nano vim -y
