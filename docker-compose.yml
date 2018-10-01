@@ -3,7 +3,7 @@ services:
   webserver:
     container_name: webserver
     build: 
-      context: .
+      context: ../
       dockerfile: /php/Dockerfile
     # volumes:
     # - "~/phpsqlsrv/www:/var/www/html"
