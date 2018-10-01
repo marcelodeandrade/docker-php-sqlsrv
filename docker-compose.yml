@@ -5,17 +5,24 @@ services:
     build: 
       context: .
       dockerfile: /php/Dockerfile
-    volumes:
-    - "~/phpsqlsrv/www:/var/www/html"
+    # volumes:
+    # - "~/phpsqlsrv/www:/var/www/html"
     ports:
     - 80:80
     - 443:443
+  # database:
+  #   container_name: database
+  #   build: 
+  #     context: .
+  #     dockerfile: /mssql/Dockerfile
+  #   volumes:
+  #   - "~/phpsqlsrv/backup:/var/opt/mssql/backup"
+  #   ports:
+  #   - 1433:1433
+    
   database:
     container_name: database
-    build: 
-      context: .
-      dockerfile: /mssql/Dockerfile
-    volumes:
-    - "~/phpsqlsrv/backup:/var/opt/mssql/backup"
-    ports:
-    - 1433:1433
+    image: microsoft/mssql-server-linux
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Microsoft-12345

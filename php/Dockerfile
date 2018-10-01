@@ -87,6 +87,10 @@ RUN apt-get update && apt-get install nano vim -y
 
 EXPOSE 80
 
-WORKDIR /var/www/html/
+# WORKDIR /var/www/html/
+WORKDIR /var/www/html
+ADD ./ /var/www/html
+
+RUN dpkg -L msodbcsql
 
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
