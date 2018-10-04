@@ -5,8 +5,8 @@ services:
     build: 
       context: ../
       dockerfile: /php/Dockerfile
-    # volumes:
-    # - "~/phpsqlsrv/www:/var/www/html"
+    volumes:
+    - "../:/app:delegated"
     ports:
     - 80:80
     - 443:443
