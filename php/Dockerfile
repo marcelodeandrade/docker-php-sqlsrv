@@ -53,7 +53,7 @@ RUN apt-get --no-install-recommends --no-install-suggests --yes --quiet install 
 RUN pecl install xdebug
 RUN echo "zend_extension=xdebug.so" > /etc/php/7.2/cli/conf.d/20-xdebug.ini
 RUN echo "zend_extension=xdebug.so" > /etc/php/7.2/apache2/conf.d/20-xdebug.ini
-COPY ./php/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+COPY ./docker-php-sqlsrv/php/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
 # INSTALL ODBC DRIVER & TOOLS
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
@@ -87,9 +87,8 @@ RUN apt-get update && apt-get install nano vim -y
 
 EXPOSE 80
 
-WORKDIR /app
 RUN rm -rf /var/www/html && ln -s /app/web/ /var/www/html || true
 
-RUN dpkg -L msodbcsql
+WORKDIR /app
 
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
