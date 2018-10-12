@@ -53,7 +53,7 @@ RUN apt-get --no-install-recommends --no-install-suggests --yes --quiet install 
 RUN pecl install xdebug
 RUN echo "zend_extension=xdebug.so" > /etc/php/7.2/cli/conf.d/20-xdebug.ini
 RUN echo "zend_extension=xdebug.so" > /etc/php/7.2/apache2/conf.d/20-xdebug.ini
-COPY ./php/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+COPY xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
 # INSTALL ODBC DRIVER & TOOLS
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
