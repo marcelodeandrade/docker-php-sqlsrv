@@ -9,57 +9,39 @@ These instructions will get you a copy of the project up and running on your loc
 ### Pre-requisites
 
 - docker-ce
-- docker-compose
 
 # Prepare
 
-
-Create the following directories
-
-```
-$ mkdir ~/phpsqlsrv/www
-```
-```
-$ mkdir ~/phpsqlsrv/backup
-```
-
-Build compose:
+Build:
 
 ```
-$ docker-compose build
+$ docker build .
 ```
 
 # Run
 
-Run up compose daemonized
+Run up daemonized
 ```
-$ docker-compose up -d
+docker run -d m91x/phpsqlrv
 ```
 
 Check containers:
 ```
-$ docker-compose ps
+$ docker ps
 
-Name                 Command               State                    Ports
----------------------------------------------------------------------------------------------
-database    /opt/mssql/bin/sqlservr          Up      0.0.0.0:1433->1433/tcp
-webserver   /usr/sbin/apache2ctl -D FO ...   Up      0.0.0.0:443->443/tcp, 0.0.0.0:80->80/tcp
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS       NAMES
+0d149516d3ec        m91x/phpsqlrv       "/usr/sbin/apache2ct…"   7 seconds ago       Up 4 seconds        80/tcp       reverent_visvesvaraya
 ```
 
 # Access
 
 SSH
 
-* webserver:
-    ```
-    docker-compose exec webserver bash 
-    ```
-* database:
-    ```
-    docker-compose exec database bash 
-    ```
+```
+docker-compose exec -i -t CONTAINER_ID bash 
+```
 
 # Stop
 ```
-docker-compose down
+docker stop CONTAINER_ID 
 ```
