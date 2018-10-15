@@ -85,10 +85,12 @@ RUN chmod +x /usr/local/bin/composer
 # INSTALL EDITORS
 RUN apt-get update && apt-get install nano vim -y
 
-EXPOSE 80
-
 RUN rm -rf /var/www/html && ln -s /app/web/ /var/www/html || true
 
 WORKDIR /app
+
+RUN mkdir -p runtime web/assets && \
+    chmod -R 775 runtime web/assets && \
+    chown -R www-data:www-data runtime web/assets
 
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
